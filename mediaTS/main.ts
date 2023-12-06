@@ -32,11 +32,9 @@ function mediaNotas (todosFeitos: boolean){
         if(soma >= 7 && soma <= 10){
             let passou : string = "Sua nota é: "+soma+"\n e você passou!"
             return passou
-        }else if(soma < 7 && soma >= 0){
+        }else{
             let passou : string = "Sua nota é: "+soma+"\n e você não passou!"
             return passou
-        }else{
-            return console.log("Digite uma nota válida da próxima")
         }
     }else if(todosFeitos == null) {
         return console.log("Errado, Digite Sim ou Não")
@@ -83,7 +81,7 @@ function mediaNotas (todosFeitos: boolean){
 }
 
 function verificarNota(nota : number){
-    if (nota > 10 || nota < 0){
+    if (nota > 10 || nota < 0 || isNaN(nota) === true){
         prompt("Como você digitou uma nota inválida vamos sortear uma nota para você")
         nota = Math.floor(Math.random()*(10-1+1))+1
         return nota
