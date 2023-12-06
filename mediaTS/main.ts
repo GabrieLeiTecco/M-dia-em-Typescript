@@ -1,16 +1,13 @@
 // o que eu preciso fazer?
 // verificar se ele fez todos os trabalhos (são 4)
 // receber quantos ele fez
+// verificar se o numero é valido (entre 1 e 3)
 // receber a nota de cada um individualmente
+// verificar se o numero é valido (entre 0 e 10)
 // fazer a média
 // verificar se ele passou ou não
 // passou >= 7
 // não passou < 7
-
-// att 06/12/2023
-// limitei para não poder notas maiores de 10 e menores de 0
-// limitei para não poder responder diferente de sim ou não
-// é o limitas
 
 function pegarDados(){
     let feito = prompt("Você fez todos os trabalhos? ")
@@ -27,10 +24,10 @@ function pegarDados(){
 
 function mediaNotas (todosFeitos: boolean){
     if (todosFeitos == true){
-        let nota1 : number = Number(prompt("Primeira nota: "))
-        let nota2 : number = Number(prompt("Segunda nota: "))
-        let nota3 : number = Number(prompt("Terceira nota: "))
-        let nota4 : number = Number(prompt("Quarta nota: "))
+        let nota1 : number = verificarNota(Number(prompt("Primeira nota: ")))
+        let nota2 : number = verificarNota(Number(prompt("Segunda nota: ")))
+        let nota3 : number = verificarNota(Number(prompt("Terceira nota: ")))
+        let nota4 : number = verificarNota(Number(prompt("Quarta nota: ")))
         let soma  : number = (nota1+nota2+nota3+nota4)/4
         if(soma >= 7 && soma <= 10){
             let passou : string = "Sua nota é: "+soma+"\n e você passou!"
@@ -48,20 +45,20 @@ function mediaNotas (todosFeitos: boolean){
         let soma : number = 0
         switch(feitos){
             case 1 :{
-                let nota1 : number = Number(prompt("Sua nota de 0 a 10: "))
+                let nota1 : number = verificarNota(Number(prompt("Sua nota de 0 a 10: ")))
                 soma = nota1/4
                 break
             }
             case 2 :{
-                let nota1 : number = Number(prompt("Sua nota de 0 a 10: "))
-                let nota2 : number = Number(prompt("Sua segunda nota: "))
+                let nota1 : number = verificarNota(Number(prompt("Sua primeira nota de 0 a 10: ")))
+                let nota2 : number = verificarNota(Number(prompt("Segunda nota: ")))
                 soma = (nota1+nota2)/4
                 break
             }
             case 3 :{
-                let nota1 : number = Number(prompt("Sua nota de 0 a 10: "))
-                let nota2 : number = Number(prompt("Sua segunda nota: "))
-                let nota3 : number = Number(prompt("Sua terceira nota: "))
+                let nota1 : number = verificarNota(Number(prompt("Primeira nota de 0 a 10: ")))
+                let nota2 : number = verificarNota(Number(prompt("Segunda nota: ")))
+                let nota3 : number = verificarNota(Number(prompt("Terceira nota: ")))
                 soma = (nota1+nota2+nota3)/4
                 break
             }
@@ -84,4 +81,15 @@ function mediaNotas (todosFeitos: boolean){
         }
     }
 }
+
+function verificarNota(nota : number){
+    if (nota > 10 || nota < 0){
+        prompt("Como você digitou uma nota inválida vamos sortear uma nota para você")
+        nota = Math.floor(Math.random()*(10-1+1))+1
+        return nota
+    }else{
+        return nota
+    }
+}
+
 console.log(mediaNotas(pegarDados()))
